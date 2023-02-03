@@ -1,0 +1,11 @@
+{
+  "name": "myclassrom-backend",
+  "version": "1.0.0",
+  "description": "Backend module to \"MyClassroom\" platform",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Kafigoto",
+  "license": "ISC"
+}
