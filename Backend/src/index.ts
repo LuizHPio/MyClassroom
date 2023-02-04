@@ -4,6 +4,7 @@ import helmet from "helmet";
 import { RequestBody } from "./Classes/RequestsInterfaces";
 import { Essay, Homework } from "./Classes/TasksInterfaces";
 import { InsertAssignment } from "./MongoDB/Operations";
+import { EpochDateObjectParse } from "./utils/utils";
 
 const app = express();
 
@@ -14,9 +15,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.post("/assignments", async (req: RequestBody, res) => {
   let body = req.body;
 
-  let epoch = Number(body.deadline);
-  let date = new Date(epoch);
-  body.deadline = date;
+  body.deadline = EpochDateObjectParse(body.deadline);
 
   if (body.assingmentType == "HOMEWORK") {
     let requestedHomework = body as Homework;
