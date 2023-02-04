@@ -4,7 +4,8 @@ DiscordBot:
 
 Backend:
     ☐ Criar uma dns de acesso para a API.
-    ☐ Endpoint para armazenar componentes em um banco de dados
+    ✔ Endpoint para armazenar componentes em um banco de dados @done (2/4/2023, 2:51:10 AM)
+    ☐ Checar se a request contém dados que batem com a tabela do banco de dados
 
 Website:
     ☐ Habilidade de adicionar deveres de casa, lembretes de levar materiais, redações.
