@@ -2,3 +2,4 @@ Backbones
 .prettierignore
 node_modules
 .env
+build-*
