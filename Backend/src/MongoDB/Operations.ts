@@ -6,7 +6,7 @@ export async function InsertAssignment(
   assignment: Assignment
 ): Promise<InsertOneResult> {
   let collection = DatabaseClient.collection("Default");
-  switch (assignment.assingmentType) {
+  switch (assignment.assignmentType) {
     case "HOMEWORK":
       collection = DatabaseClient.collection("Homework");
       break;
