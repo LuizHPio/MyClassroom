@@ -10,7 +10,11 @@ export async function handleAssignmentInsert(
   switch (req.body.assignmentType) {
     case "HOMEWORK":
       if (!NotNullish([req.body.subject, req.body.pages])) {
-        throw new Error("Request body lacks parameters(subject or pages)");
+        res.status(400).send({
+          errorCode: "MISSING_PARAMS",
+          message: "Request body is missing subject or pages parameters.",
+        });
+        return;
       }
       assignmentObject = new Homework(
         req.body.assignmentType,
@@ -21,7 +25,11 @@ export async function handleAssignmentInsert(
       break;
     case "ESSAY":
       if (!NotNullish([req.body.prompt, req.body.genre])) {
-        throw new Error("Request body lacks parameters(prompt or genre)");
+        res.status(400).send({
+          errorCode: "MISSING_PARAMS",
+          message: "Request body is missing prompt or genre parameters.",
+        });
+        return;
       }
       assignmentObject = new Essay(
         req.body.assignmentType,
@@ -32,12 +40,19 @@ export async function handleAssignmentInsert(
       break;
 
     default:
-      throw new Error(`assignmentType not found: ${req.body.assignmentType}`);
+      res.status(400).send({
+        errorCode: "INVALID_ASSIGNMENT_TYPE",
+        message: `assignmentType not found: ${req.body.assignmentType}`,
+      });
+      return;
   }
   try {
     await InsertAssignment(assignmentObject);
     res.sendStatus(200);
   } catch (err) {
-    throw err;
+    res.status(500).send({
+      errorCode: "DB_ERROR",
+      message: "Error inserting assignment into database.",
+    });
   }
 }

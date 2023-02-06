@@ -23,6 +23,8 @@ export async function InsertAssignment(
   try {
     return await collection.insertOne(assignment);
   } catch (err) {
-    return Promise.reject(new Error(err as any));
+    if (err instanceof Error) {
+      return Promise.reject(new Error(err.message));
+    } else return Promise.reject();
   }
 }
