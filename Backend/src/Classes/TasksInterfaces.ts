@@ -1,11 +1,13 @@
-const validAssignments = ["HOMEWORK", "ESSAY"];
+const validAssignments = ["HOMEWORK", "ESSAY"] as const;
+
+type ValidAssignments = typeof validAssignments[number];
 
 export class Assignment {
   public expired: boolean;
-  public assignmentType: string;
+  public assignmentType: ValidAssignments;
   public deadline: Date;
 
-  public constructor(assignmentType: string, deadline: Date) {
+  public constructor(assignmentType: ValidAssignments, deadline: Date) {
     if (validAssignments.indexOf(assignmentType) == -1) {
       throw new Error(
         `Tried to assign invalid value to variable in constructor ${assignmentType}`
@@ -24,7 +26,7 @@ export class Homework extends Assignment {
   public pages: string;
 
   public constructor(
-    assignmentType: string = "HOMEWORK" || "ESSAY",
+    assignmentType: ValidAssignments,
     deadline: Date,
     subject: string,
     pages: string
@@ -40,7 +42,7 @@ export class Essay extends Assignment {
   public genre: string;
 
   public constructor(
-    assignmentType: string = "HOMEWORK" || "ESSAY",
+    assignmentType: ValidAssignments,
     deadline: Date,
     prompt: string,
     genre: string
@@ -48,5 +50,12 @@ export class Essay extends Assignment {
     super(assignmentType, deadline);
     this.prompt = prompt;
     this.genre = genre;
+  }
+}
+
+export class Webhook {
+  public url: string;
+  constructor(url: string) {
+    this.url = url;
   }
 }
