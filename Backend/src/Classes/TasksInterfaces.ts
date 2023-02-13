@@ -1,8 +1,18 @@
+import { ObjectId } from "mongodb";
+
 const validAssignments = ["HOMEWORK", "ESSAY"] as const;
 
 type ValidAssignments = typeof validAssignments[number];
 
 export class Assignment {
+  /**
+   * Base assignment object
+   *
+   * @param assignmentType - The type of this assignment, can be one of "ValidAssignments".
+   * @param deadline - The time this assignment will expire, is a javascript Date object.
+   *
+   */
+  public _id: ObjectId;
   public expired: boolean;
   public assignmentType: ValidAssignments;
   public deadline: Date;
@@ -15,6 +25,7 @@ export class Assignment {
     } else {
       this.assignmentType = assignmentType;
     }
+    this._id = new ObjectId();
     this.deadline = deadline;
     this.expired =
       Date.now() >= deadline[Symbol.toPrimitive]("number") ? true : false;
@@ -23,7 +34,7 @@ export class Assignment {
 
 export class Homework extends Assignment {
   public subject: string;
-  public pages: string;
+  public pages: number[];
 
   public constructor(
     assignmentType: ValidAssignments,
@@ -33,7 +44,12 @@ export class Homework extends Assignment {
   ) {
     super(assignmentType, deadline);
     this.subject = subject;
-    this.pages = pages;
+
+    let pagesArray: number[] = [];
+    pages.split(",").forEach((callback) => {
+      pagesArray.push(parseInt(callback));
+    });
+    this.pages = pagesArray;
   }
 }
 

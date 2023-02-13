@@ -1,6 +1,10 @@
+Projeto:
+    ☐ Adicionar descrição em xml das funções. ref: https://tsdoc.org/
+
 DiscordBot:
     ☐ Habilidade de adicionar deveres de casa, lembretes de levar materiais, redações.
-    ☐ Notificar deveres de casa.
+    ✔ Notificar deveres de casa. @done (2/13/2023, 8:14:37 PM)
+    ✔ Validação de dever de casa. @done (2/13/2023, 8:14:47 PM)
 
 Backend:
     ☐ Criar uma dns de acesso para a API.
@@ -8,8 +12,9 @@ Backend:
     ✔ Checar se a request contém dados que batem com a tabela do banco de dados @done (2/6/2023, 7:22:59 PM)
     ☐ Mostrar o volume do livro atualmente sendo utilizado.
     ☐ Endpoint de acesso de dados do banco.
-    ☐ Calcular data de entrega no construtor da classe.
+    ✔ Calcular data de entrega no construtor da classe. @done (2/13/2023, 8:14:21 PM)
     ☐ Implementar as mudanças descritas em Backbones/AssignmentsHandlers.txt
+    ☐ Reinicializar os Cron Jobs por meio de uma query do DB quando o servidor for iniciado.
 
 Website:
     ☐ Habilidade de adicionar deveres de casa, lembretes de levar materiais, redações.

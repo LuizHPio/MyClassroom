@@ -1,5 +1,7 @@
+import schedule from "node-schedule";
 import axios from "axios";
-import { getWebhooks } from "../MongoDB/Operations";
+import { Assignment } from "../Classes/TasksInterfaces";
+import { ExpireAssignment, getWebhooks } from "../MongoDB/Operations";
 
 export function EpochDateObjectParse(epochString: string) {
   let epochNumber = Number(epochString);
@@ -15,7 +17,7 @@ export function NotNullish(variable: any[]): boolean {
   return notNullElements.every(Boolean);
 }
 
-export async function NotifyWebhooks() {
+export async function NotifyWebhooks(assignment: Assignment) {
   let urlArray: string[] = await getWebhooks();
 
   urlArray.forEach(async (url) => {
@@ -26,16 +28,19 @@ export async function NotifyWebhooks() {
         Accept: "application/json",
         "Content-Type": "application/json;charset=UTF-8",
       },
-      data: {
-        action: true,
-      },
+      data: assignment,
     };
     try {
-      console.log(url);
       let response = await axios(options);
-      console.log(response.status, response.statusText);
     } catch (error) {
-      if (error instanceof Error) console.log(error.message);
+      console.error(error);
     }
+  });
+}
+
+export function scheduleMessage(assignmentObject: Assignment) {
+  const job = schedule.scheduleJob(assignmentObject.deadline, () => {
+    ExpireAssignment(assignmentObject).catch((err) => console.error(err));
+    NotifyWebhooks(assignmentObject);
   });
 }
