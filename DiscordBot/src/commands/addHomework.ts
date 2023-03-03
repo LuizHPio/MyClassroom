@@ -18,7 +18,17 @@ export = {
         .addChoices(
           { name: "Português", value: "portuguese" },
           { name: "Matemática", value: "math" },
-          { name: "Física", value: "physics" }
+          { name: "Física", value: "physics" },
+          { name: "Biologia", value: "biology" },
+          { name: "Espanhol", value: "spanish" },
+          { name: "Química", value: "chemistry" },
+          { name: "Geografia", value: "geography" },
+          { name: "Sociologia", value: "sociology" },
+          { name: "Literature", value: "literature" },
+          { name: "Filosofia", value: "philosophy" },
+          { name: "Inglês", value: "english" },
+          { name: "História", value: "history" },
+          { name: "Artes e Música", value: "arts" }
         )
     )
     .addStringOption((option) =>
@@ -48,7 +58,6 @@ export = {
         Accept: "application/json",
         "Content-Type": "application/json;charset=UTF-8",
       },
-      // TEMPORARY DEADLINE FOR FUCKS SAKE REMOVE THAT.
       data: {
         assignmentType: "HOMEWORK",
         deadline: deadline,

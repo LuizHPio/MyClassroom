@@ -1,12 +1,8 @@
 import express from "express";
 import bodyParser from "body-parser";
-import { EventEmitter } from "events";
-import { Client, Events, GatewayIntentBits, Collection } from "discord.js";
+import { Client, GatewayIntentBits, Collection } from "discord.js";
 import fs from "node:fs";
 import path from "node:path";
-import { getSubjectClosestDay } from "./utils/getSubjectClosestDay";
-import { getGuilds } from "./mongoDB/databaseOperations";
-import axios from "axios";
 require("dotenv").config({ path: "../.env" });
 
 const app = express();

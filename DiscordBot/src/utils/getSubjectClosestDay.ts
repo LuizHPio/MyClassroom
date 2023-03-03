@@ -4,6 +4,14 @@ interface TimeTable {
   physics: string[];
   biology: string[];
   spanish: string[];
+  chemistry: string[];
+  geography: string[];
+  sociology: string[];
+  literature: string[];
+  philosophy: string[];
+  english: string[];
+  history: string[];
+  arts: string[];
 }
 
 interface WeekDays {
@@ -28,6 +36,14 @@ const subjectTimeTable: TimeTable = {
   physics: ["monday", "tuesday", "wednesday"],
   biology: ["monday", "wednesday"],
   spanish: ["friday"],
+  chemistry: ["tuesday", "wednesday"],
+  geography: ["tuesday", "thursday"],
+  sociology: ["wednesday"],
+  literature: ["wednesday"],
+  philosophy: ["wednesday"],
+  english: ["thursday"],
+  history: ["friday"],
+  arts: ["friday"],
 };
 
 export function getSubjectClosestDay(subject: string) {

@@ -5,6 +5,7 @@ DiscordBot:
     ☐ Habilidade de adicionar deveres de casa, lembretes de levar materiais, redações.
     ✔ Notificar deveres de casa. @done (2/13/2023, 8:14:37 PM)
     ✔ Validação de dever de casa. @done (2/13/2023, 8:14:47 PM)
+    ☐ Transformar interface do dia das matérias em um Objeto.
 
 Backend:
     ☐ Criar uma dns de acesso para a API.
