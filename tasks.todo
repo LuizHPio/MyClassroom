@@ -11,7 +11,7 @@ Backend:
     ☐ Criar uma dns de acesso para a API.
     ✔ Endpoint para armazenar componentes em um banco de dados @done (2/4/2023, 2:51:10 AM)
     ✔ Checar se a request contém dados que batem com a tabela do banco de dados @done (2/6/2023, 7:22:59 PM)
-    ☐ Mostrar o volume do livro atualmente sendo utilizado.
+    ✔ Mostrar o volume do livro atualmente sendo utilizado. @done (3/4/2023, 11:57:38 AM)
     ☐ Endpoint de acesso de dados do banco.
     ✔ Calcular data de entrega no construtor da classe. @done (2/13/2023, 8:14:21 PM)
     ☐ Implementar as mudanças descritas em Backbones/AssignmentsHandlers.txt

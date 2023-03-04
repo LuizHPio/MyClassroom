@@ -46,7 +46,12 @@ const subjectTimeTable: TimeTable = {
   arts: ["friday"],
 };
 
-export function getSubjectClosestDay(subject: string) {
+/**
+ * Inputs a subject and returns the next day you will have a class with that subject.
+ * @param subject - string of the subject
+ * @returns unix timestamp of next class
+ **/
+export function getSubjectClosestDay(subject: string): number {
   let subjectDays: string[] = subjectTimeTable[subject as keyof TimeTable];
   let subjectDaysNumbers: number[] = [];
   const todaysDate = new Date();
@@ -74,7 +79,6 @@ export function getSubjectClosestDay(subject: string) {
     }
   }
   if (closestDayNumber < 0) throw new Error("negative weekday");
-
   let difference = closestDayNumber - todaysWeekDay;
   if (todaysWeekDay < closestDayNumber) {
     return (
@@ -84,7 +88,7 @@ export function getSubjectClosestDay(subject: string) {
   } else {
     return (
       todaysDate[Symbol.toPrimitive]("number") +
-      (6 - difference) * 1000 * 60 * 60 * 24
+      (6 + difference) * 1000 * 60 * 60 * 24
     );
   }
 }

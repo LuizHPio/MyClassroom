@@ -3,6 +3,7 @@ import bodyParser from "body-parser";
 import { Client, GatewayIntentBits, Collection } from "discord.js";
 import fs from "node:fs";
 import path from "node:path";
+import { getSubjectClosestDay } from "./utils/getSubjectClosestDay";
 require("dotenv").config({ path: "../.env" });
 
 const app = express();

@@ -4,14 +4,14 @@ const validAssignments = ["HOMEWORK", "ESSAY"] as const;
 
 type ValidAssignments = typeof validAssignments[number];
 
+/**
+ * Base assignment object
+ *
+ * @param assignmentType - The type of this assignment, can be one of "ValidAssignments".
+ * @param deadline - The time this assignment will expire, is a javascript Date object.
+ *
+ */
 export class Assignment {
-  /**
-   * Base assignment object
-   *
-   * @param assignmentType - The type of this assignment, can be one of "ValidAssignments".
-   * @param deadline - The time this assignment will expire, is a javascript Date object.
-   *
-   */
   public _id: ObjectId;
   public expired: boolean;
   public assignmentType: ValidAssignments;
@@ -74,4 +74,12 @@ export class Webhook {
   constructor(url: string) {
     this.url = url;
   }
+}
+
+export interface BookUpdate {
+  guildId: string;
+  subject: string;
+  chapter: number;
+  notify: boolean;
+  deadline: string;
 }

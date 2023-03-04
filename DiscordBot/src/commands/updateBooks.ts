@@ -8,8 +8,8 @@ import { getSubjectClosestDay } from "../utils/getSubjectClosestDay";
 
 export = {
   data: new SlashCommandBuilder()
-    .setName("deverdecasa")
-    .setDescription("Adiciona um dever de casa!")
+    .setName("livrosatualizar")
+    .setDescription("Atualizar capítulo do livro!")
     .addStringOption((option) =>
       option
         .setName("materia")
@@ -24,53 +24,62 @@ export = {
           { name: "Química", value: "chemistry" },
           { name: "Geografia", value: "geography" },
           { name: "Sociologia", value: "sociology" },
-          { name: "Literatura", value: "literature" },
+          { name: "Literature", value: "literature" },
           { name: "Filosofia", value: "philosophy" },
           { name: "Inglês", value: "english" },
           { name: "História", value: "history" },
           { name: "Artes e Música", value: "arts" }
         )
     )
-    .addStringOption((option) =>
+    .addNumberOption((option) =>
       option
-        .setName("paginas")
-        .setDescription("Páginas do dever SEPARADAS POR VÍRGULA.")
+        .setName("capitulo")
+        .setDescription("Capítulo atual")
         .setRequired(true)
+    )
+    .addBooleanOption((option) =>
+      option
+        .setName("notificar")
+        .setDescription("Enviar notificação para lembrar de trazer o livro.")
     ),
   async execute(interaction: CommandInteraction) {
-    let options = interaction.options;
+    let optionHandle = interaction.options;
 
     let subject;
-    let pages;
-    let deadline;
+    let chapter;
+    let notify;
+    let guildId = interaction.guildId;
 
-    if (options instanceof CommandInteractionOptionResolver) {
-      subject = options.getString("materia");
-      pages = options.getString("paginas");
+    if (optionHandle instanceof CommandInteractionOptionResolver) {
+      subject = optionHandle.getString("materia");
+      chapter = optionHandle.getNumber("capitulo");
+      notify = optionHandle.getBoolean("notificar") ?? true;
     }
 
+    let deadline;
     if (subject) deadline = getSubjectClosestDay(subject);
 
     let requestOptions = {
       method: "POST",
-      url: "http://localhost:3000/assignments",
+      url: "http://localhost:3000/books",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json;charset=UTF-8",
       },
       data: {
-        assignmentType: "HOMEWORK",
-        deadline: deadline,
+        guildId: guildId,
         subject: subject,
-        pages: pages,
+        chapter: chapter,
+        notify: notify,
+        deadline: deadline,
       },
     };
     try {
-      let response = await axios(requestOptions);
-    } catch (error) {
-      console.error(error);
+      let _ = await axios(requestOptions);
+    } catch (err) {
+      console.error(err);
+      await interaction.reply("Erro em atualizar livro!");
     }
-
-    await interaction.reply("Dever de casa enviado!");
+    await interaction.reply("Livro atualizado com sucesso!");
   },
 };

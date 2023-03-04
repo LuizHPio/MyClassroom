@@ -2,9 +2,7 @@ import { Client } from "discord.js";
 import { getGuilds } from "../mongoDB/databaseOperations";
 
 interface assignmentObject {
-  expired: boolean;
   assignmentType: string;
-  deadline: Date;
 }
 
 export = {
@@ -37,6 +35,12 @@ export = {
               );
             }
             break;
+          case "BOOK": {
+            let anyObject = dataObject as any;
+            channel.send(
+              `Lembrete para levar o livro de ${anyObject.subject} volume ${anyObject.chapter} amanhã.`
+            );
+          }
 
           default:
             break;
