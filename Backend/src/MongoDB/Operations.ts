@@ -1,4 +1,4 @@
-import { InsertOneResult, WithId } from "mongodb";
+import { InsertOneResult } from "mongodb";
 import { Assignment, BookUpdate, Webhook } from "../Classes/TasksInterfaces";
 import { DatabaseClient } from "./DatabaseConnection";
 
