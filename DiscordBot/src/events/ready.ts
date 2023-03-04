@@ -1,4 +1,4 @@
-import { Events, Client, BaseInteraction } from "discord.js";
+import { Events, Client } from "discord.js";
 
 export = {
   name: Events.ClientReady,

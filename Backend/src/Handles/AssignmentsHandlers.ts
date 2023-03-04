@@ -1,6 +1,6 @@
 import { Homework, Essay } from "../Classes/TasksInterfaces";
 import { InsertAssignment } from "../MongoDB/Operations";
-import { NotifyWebhooks, NotNullish, scheduleMessage } from "../Utils/Utils";
+import { NotNullish, scheduleMessage } from "../Utils/Utils";
 
 export async function handleAssignmentInsert(
   req: any,
