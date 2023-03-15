@@ -59,6 +59,13 @@ export = {
     let deadline;
     if (subject) deadline = getSubjectClosestDay(subject);
 
+    if (deadline) {
+      let dateObj = new Date(deadline);
+      console.log(
+        `Livro da matéria ${subject} atualizado, utilizando capitulo ${chapter}\nNotificar em ${dateObj.toDateString()}`
+      );
+    }
+
     let requestOptions = {
       method: "POST",
       url: "http://localhost:3000/books",

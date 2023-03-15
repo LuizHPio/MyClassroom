@@ -51,6 +51,12 @@ export = {
 
     if (subject) deadline = getSubjectClosestDay(subject);
 
+    if (deadline) {
+      let dateObj = new Date(deadline);
+      console.log(
+        `Novo dever de casa de ${subject} adicionado para: ${dateObj.toDateString()}\nPaginas: ${pages}`
+      );
+    }
     let requestOptions = {
       method: "POST",
       url: "http://localhost:3000/assignments",
