@@ -1,5 +1,7 @@
 Projeto:
     ☐ Adicionar descrição em xml das funções. ref: https://tsdoc.org/
+    ☐ Testar o que acontece quando há uma desconexão de rede.
+    ☐ Dropar database "ESSAY" mandar redações para a database "HOMEWORK" com o assignmentType adequado.
 
 DiscordBot:
     ☐ Habilidade de adicionar deveres de casa, lembretes de levar materiais, redações.
@@ -15,7 +17,8 @@ Backend:
     ☐ Endpoint de acesso de dados do banco.
     ✔ Calcular data de entrega no construtor da classe. @done (2/13/2023, 8:14:21 PM)
     ☐ Implementar as mudanças descritas em Backbones/AssignmentsHandlers.txt
-    ☐ Reinicializar os Cron Jobs por meio de uma query do DB quando o servidor for iniciado.
+    ✔ Reinicializar os Cron Jobs por meio de uma query do DB quando o servidor for iniciado. @done (3/15/2023, 6:51:04 PM)
+    ☐ Reinicializar os Cron Jobs dos livros quando o servidor foi iniciado.
 
 Website:
     ☐ Habilidade de adicionar deveres de casa, lembretes de levar materiais, redações.

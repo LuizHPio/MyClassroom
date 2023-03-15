@@ -17,7 +17,7 @@ export class Assignment {
   public assignmentType: ValidAssignments;
   public deadline: Date;
 
-  public constructor(assignmentType: ValidAssignments, deadline: Date) {
+  protected constructor(assignmentType: ValidAssignments, deadline: Date) {
     if (validAssignments.indexOf(assignmentType) == -1) {
       throw new Error(
         `Tried to assign invalid value to variable in constructor ${assignmentType}`
