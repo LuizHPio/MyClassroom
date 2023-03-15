@@ -1,23 +1,16 @@
-import express from "express";
 import bodyParser from "body-parser";
+import express from "express";
 import helmet from "helmet";
 import { RequestBody } from "./Classes/RequestsInterfaces";
-import {
-  Assignment,
-  BookUpdate,
-  Essay,
-  Homework,
-} from "./Classes/TasksInterfaces";
-import { getWebhooks, InsertAssignment } from "./MongoDB/Operations";
-import {
-  EpochDateObjectParse,
-  NotifyWebhooks,
-  NotNullish,
-  scheduleBookNotification,
-} from "./Utils/Utils";
+import { BookUpdate } from "./Classes/TasksInterfaces";
 import { handleAssignmentInsert } from "./Handles/AssignmentsHandlers";
-import { HandleWebhook } from "./Handles/WebhookHandler";
 import { HandleBookUpdate } from "./Handles/BookHandler";
+import { HandleWebhook } from "./Handles/WebhookHandler";
+import {
+  databaseJobImport,
+  EpochDateObjectParse,
+  NotNullish,
+} from "./Utils/Utils";
 
 const app = express();
 
@@ -67,6 +60,8 @@ app.post("/assignments", async (req: RequestBody, res) => {
     }
   }
 });
+
+databaseJobImport();
 
 app.listen(3000, async () => {
   console.log("listening on port 3000");
