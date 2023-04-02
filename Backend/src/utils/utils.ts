@@ -5,17 +5,9 @@ import { ExpireAssignment, getWebhooks } from "../MongoDB/Operations";
 import { DatabaseClient } from "../MongoDB/DatabaseConnection";
 
 export function EpochDateObjectParse(epochString: string) {
+  if (!epochString) return epochString;
   let epochNumber = Number(epochString);
   return new Date(epochNumber);
-}
-
-export function NotNullish(variable: any[]): boolean {
-  let notNullElements: boolean[] = [];
-  for (let i = 0; i < variable.length; i++) {
-    const element = variable[i];
-    notNullElements.push(element !== null && element !== undefined);
-  }
-  return notNullElements.every(Boolean);
 }
 
 export async function NotifyWebhooks(assignment: Assignment) {
@@ -41,6 +33,9 @@ export async function NotifyWebhooks(assignment: Assignment) {
 
 export function scheduleMessage(assignmentObject: Assignment) {
   const job = schedule.scheduleJob(assignmentObject.deadline, () => {
+    console.log(
+      `Scheduled job ${(assignmentObject._id, assignmentObject.deadline)}`
+    );
     ExpireAssignment(assignmentObject).catch((err) => console.error(err));
     NotifyWebhooks(assignmentObject);
   });

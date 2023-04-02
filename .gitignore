@@ -3,6 +3,7 @@ Backbones
 node_modules
 .env
 build
+startProd.bat
 startDiscord.bat
 startBackend.bat
-startAll.bat
+debugAll.bat

@@ -19,6 +19,7 @@ Backend:
     ☐ Implementar as mudanças descritas em Backbones/AssignmentsHandlers.txt
     ✔ Reinicializar os Cron Jobs por meio de uma query do DB quando o servidor for iniciado. @done (3/15/2023, 6:51:04 PM)
     ☐ Reinicializar os Cron Jobs dos livros quando o servidor foi iniciado.
+    ✔ Adicionar error checking no construtor da classe do AssignmentsHandlers. @done (4/2/2023, 12:50:24 AM)
 
 Website:
     ☐ Habilidade de adicionar deveres de casa, lembretes de levar materiais, redações.
