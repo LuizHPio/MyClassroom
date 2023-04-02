@@ -26,6 +26,11 @@ export class Assignment {
       this.assignmentType = assignmentType;
     }
     this._id = new ObjectId();
+
+    if (!deadline) {
+      throw new Error("Request is missing deadline parameter");
+    }
+
     this.deadline = deadline;
     this.expired =
       Date.now() >= deadline[Symbol.toPrimitive]("number") ? true : false;
@@ -42,6 +47,15 @@ export class Homework extends Assignment {
     subject: string,
     pages: string
   ) {
+    if (!deadline) {
+      throw new Error("Request is missing deadline parameter");
+    }
+    if (!subject) {
+      throw new Error("Request is missing subject parameter");
+    }
+    if (!pages) {
+      throw new Error("Request is missing pages parameter");
+    }
     super(assignmentType, deadline);
     this.subject = subject;
 
@@ -63,6 +77,15 @@ export class Essay extends Assignment {
     prompt: string,
     genre: string
   ) {
+    if (!deadline) {
+      throw new Error("Request is missing deadline parameter");
+    }
+    if (!prompt) {
+      throw new Error("Request is missing prompt parameter");
+    }
+    if (!genre) {
+      throw new Error("Request is missing genre parameter");
+    }
     super(assignmentType, deadline);
     this.prompt = prompt;
     this.genre = genre;

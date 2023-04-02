@@ -6,11 +6,7 @@ import { BookUpdate } from "./Classes/TasksInterfaces";
 import { handleAssignmentInsert } from "./Handles/AssignmentsHandlers";
 import { HandleBookUpdate } from "./Handles/BookHandler";
 import { HandleWebhook } from "./Handles/WebhookHandler";
-import {
-  databaseJobImport,
-  EpochDateObjectParse,
-  NotNullish,
-} from "./Utils/Utils";
+import { databaseJobImport, EpochDateObjectParse } from "./Utils/Utils";
 
 const app = express();
 
@@ -43,19 +39,14 @@ app.post("/books", async (req: RequestBody, res) => {
 });
 
 app.post("/assignments", async (req: RequestBody, res) => {
-  if (!NotNullish([req.body.deadline, req.body.assignmentType])) {
-    res
-      .status(400)
-      .send("Request body lacks parameters(assignmentType or deadline)");
-    return;
-  }
-
   req.body.deadline = EpochDateObjectParse(req.body.deadline);
 
   try {
     await handleAssignmentInsert(req, res);
   } catch (error) {
     if (error instanceof Error) {
+      console.log("HEREHREREHR");
+      console.error(error);
       res.status(500).send(error.message);
     }
   }
