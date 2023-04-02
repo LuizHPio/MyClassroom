@@ -5,19 +5,7 @@ import { DatabaseClient } from "./DatabaseConnection";
 export async function InsertAssignment(
   assignment: Assignment
 ): Promise<InsertOneResult> {
-  let collection = DatabaseClient.collection("Default");
-  switch (assignment.assignmentType) {
-    case "HOMEWORK":
-      collection = DatabaseClient.collection("HOMEWORK");
-      break;
-
-    case "ESSAY":
-      collection = DatabaseClient.collection("ESSAY");
-      break;
-
-    default:
-      return Promise.reject(new Error("Assignment type not found."));
-  }
+  let collection = DatabaseClient.collection("HOMEWORK");
   try {
     return await collection.insertOne(assignment);
   } catch (err) {
